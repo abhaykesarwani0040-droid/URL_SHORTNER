@@ -34,10 +34,10 @@ const UrlForm = () => {
     }, 2000);
   }
 
-  return (
+    return (
     <div className="space-y-4">
         <div>
-          <label htmlFor="url" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="url" className="mb-1.5 block text-sm font-medium text-slate-700">
             Enter your URL
           </label>
           <input
@@ -47,23 +47,12 @@ const UrlForm = () => {
             onInput={(event)=>setUrl(event.target.value)}
             placeholder="https://example.com"
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder-slate-400 shadow-sm transition focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-100"
           />
         </div>
-        <button
-          onClick={handleSubmit}
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
-        >Shorten URL
-        </button>
-         {error && (
-          <div className="mt-4 p-3 bg-red-100 text-red-700 rounded-md">
-            {error}
-          </div>
-        )}
         {isAuthenticated && (
-          <div className="mt-4">
-            <label htmlFor="customSlug" className="block text-sm font-medium text-gray-700 mb-1">
+          <div>
+            <label htmlFor="customSlug" className="mb-1.5 block text-sm font-medium text-slate-700">
               Custom URL (optional)
             </label>
             <input
@@ -72,26 +61,37 @@ const UrlForm = () => {
               value={customSlug}
               onChange={(event) => setCustomSlug(event.target.value)}
               placeholder="Enter custom slug"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder-slate-400 shadow-sm transition focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-100"
             />
           </div>
         )}
+        <button
+          onClick={handleSubmit}
+          type="submit"
+          className="w-full rounded-lg bg-indigo-600 px-4 py-3 font-semibold text-white shadow-sm transition-colors hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-200 disabled:opacity-50"
+        >Shorten URL
+        </button>
+         {error && (
+          <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+            {error}
+          </div>
+        )}
         {shortUrl && (
-          <div className="mt-6">
-            <h2 className="text-lg font-semibold mb-2">Your shortened URL:</h2>
-            <div className="flex items-center">
+          <div className="rounded-xl border border-indigo-100 bg-indigo-50/60 p-4">
+            <h2 className="mb-2 text-sm font-semibold text-slate-900">Your shortened URL</h2>
+            <div className="flex flex-col gap-2 sm:flex-row">
               <input
                 type="text"
                 readOnly
                 value={shortUrl}
-                className="flex-1 p-2 border border-gray-300 rounded-l-md bg-gray-50"
+                className="min-w-0 flex-1 rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-indigo-700"
               />
                <button
                 onClick={handleCopy}
-                className={`px-4 py-2 rounded-r-md transition-colors duration-200 ${
-                  copied 
-                    ? 'bg-green-500 text-white hover:bg-green-600' 
-                    : 'bg-gray-200 hover:bg-gray-300'
+                className={`inline-flex items-center justify-center gap-1.5 rounded-lg px-5 py-2.5 text-sm font-semibold transition-colors duration-200 ${
+                  copied
+                    ? 'bg-green-600 text-white hover:bg-green-700'
+                    : 'bg-slate-900 text-white hover:bg-slate-700'
                 }`}
               >
                 {copied ? 'Copied!' : 'Copy'}
@@ -102,5 +102,6 @@ const UrlForm = () => {
       </div>
   )
 }
+
 
 export default UrlForm

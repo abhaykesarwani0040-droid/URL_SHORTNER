@@ -1,17 +1,14 @@
-import React from 'react'
-import HomePage from './pages/HomePage'
-import LoginForm from './components/LoginForm'
-import AuthPage from './pages/AuthPage'
-import { Outlet } from '@tanstack/react-router'
-import Navbar from './components/NavBar'
+import React from "react";
+import { Outlet } from "@tanstack/react-router";
+import Navbar from "./components/NavBar";
 
 const RootLayout = () => {
   return (
     <>
-      <Navbar/>
-      <Outlet/>
+      <Navbar />
+      <Outlet />
     </>
-  )
-}
+  );
+};
 
-export default RootLayout
+export default RootLayout;
